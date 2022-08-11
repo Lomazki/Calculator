@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/result_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="150dp"
+        android:gravity="center_horizontal"
+        android:padding="10dp"
+        android:textSize="24sp"
+        tools:text="Here will be result" />
+
+    <LinearLayout
+        android:id="@+id/container_all_buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/container_line_number_1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/number_1"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@color/gray"
+                android:gravity="center"
+                android:text="@string/_1"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/number_2"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@color/gray"
+                android:gravity="center"
+                android:text="@string/_2"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/number_3"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@color/gray"
+                android:gravity="center"
+                android:text="@string/_3"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/plus"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@color/signs"
+                android:gravity="center"
+                android:text="@string/_plus"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_line_number_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/number_4"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@color/gray"
+                android:gravity="center"
+                android:text="@string/_4"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/number_5"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@color/gray"
+                android:gravity="center"
+                android:text="@string/_5"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/number_6"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@color/gray"
+                android:gravity="center"
+                android:text="@string/_6"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/minus"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@color/signs"
+                android:gravity="center"
+                android:text="@string/minus"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_line_number_3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/number_7"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@color/gray"
+                android:gravity="center"
+                android:text="@string/_7"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/number_8"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@color/gray"
+                android:gravity="center"
+                android:text="@string/_8"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/number_9"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@color/gray"
+                android:gravity="center"
+                android:text="@string/_9"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/div"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@color/signs"
+                android:gravity="center"
+                android:text="@string/div"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_line_number_4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/number_0"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@color/gray"
+                android:gravity="center"
+                android:text="@string/_0"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/dot"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@color/gray"
+                android:gravity="center"
+                android:text="@string/dot"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/c"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@color/orange"
+                android:gravity="center"
+                android:text="@string/c"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/multiply"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@color/signs"
+                android:gravity="center"
+                android:text="@string/multiply"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/equally"
+                android:layout_width="160dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:background="@color/black60"
+                android:gravity="center"
+                android:text="@string/equally"
+                android:textSize="54sp" />
+
+            <TextView
+                android:id="@+id/backspace"
+                android:layout_width="160dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:background="@color/black99"
+                android:gravity="center"
+                android:text="@string/backspace"
+                android:textColor="@color/white"
+                android:textSize="40sp" />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</FrameLayout>
+
