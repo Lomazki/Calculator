@@ -6,25 +6,26 @@ class Calc {
     private val operationList = mutableListOf<String>()
     private var numberList = mutableListOf<Double>()
     private val validator = Validator()
-    private val nf = DecimalFormat(numberFormat)
+    private val numberFormat = DecimalFormat(NUMBER_FORMAT)
 
     fun calculate(input: String): String {
         if (input == EMPTY_STRING) {
             return EMPTY_STRING
         }
         val inputList = inputToList(input)
-        if (validator.validate(inputList) == ERROR) {
-            return ERROR
+        validator.validate(inputList)
+        if (ErrorMessage.messageList.isNotEmpty()) {
+            return ErrorMessage.messageList[0]
         }
         filterInput(inputList)
-        return nf.format(calculateExpression()).toString()
+        return numberFormat.format(calculateExpression()).toString()
     }
 
     private fun filterInput(inputList: List<String>) {
         inputList.forEach {
             if (it.toDoubleOrNull() != null) {
                 numberList.add(it.toDouble())
-            }  else {
+            } else {
                 when (it) {
                     PLUS -> operationList.add(PLUS)
                     MULTIPLY -> operationList.add(MULTIPLY)
@@ -78,5 +79,4 @@ class Calc {
         }
         return result
     }
-
 }

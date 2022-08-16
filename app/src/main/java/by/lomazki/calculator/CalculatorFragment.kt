@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import by.lomazki.calculator.databinding.FragmentCalculatorBinding
+import com.google.android.material.snackbar.Snackbar
 
 
 class CalculatorFragment : Fragment() {
@@ -91,13 +92,21 @@ class CalculatorFragment : Fragment() {
                 resultTextView.text = expression.toString()
             }
             equally.setOnClickListener {
-                resultTextView.text = calc.calculate(expression.toString())
-                expression.clear()
+                val result = calc.calculate(expression.toString())
+                if (result.toDoubleOrNull() == null) {
+                    resultTextView.text = expression
+                    Snackbar.make(view, result, Snackbar.LENGTH_INDEFINITE)
+                        .setAction("ok") {
+                        }.show()
+                } else {
+                    resultTextView.text = result
+                    expression.clear()
+                }
             }
             backspace.setOnClickListener {
                 if (expression.isEmpty()) {
                     expression.append(EMPTY_STRING)
-                } else{
+                } else {
                     expression.deleteCharAt(expression.length - 1)
                 }
                 resultTextView.text = expression

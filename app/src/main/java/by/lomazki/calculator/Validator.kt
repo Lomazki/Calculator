@@ -2,51 +2,53 @@ package by.lomazki.calculator
 
 class Validator {
 
-    private var errorList = mutableListOf<String>()
-
-    fun validate(exprList: List<String>): String {
-        if (errorList.isNotEmpty()) {
-            errorList.clear()
+    fun validate(exprList: List<String>) {
+        if (ErrorMessage.messageList.isNotEmpty()) {
+            ErrorMessage.messageList = listOf()
         }
+
         isExprInvalid(exprList)
         isOperatorStart(exprList)
         isDoubleOperator(exprList)
         isDivNull(exprList)
-        if (errorList.contains(ERROR)) {
-            return ERROR
-        }
-        return EMPTY_STRING
+
     }
 
-    private fun isExprInvalid(exprList: List<String>) {  // выражение не полное. нет слогаемого
+    private fun isExprInvalid(exprList: List<String>) {     // выражение не полное. нет слогаемого
         if (!exprList.last().toCharArray()[0].isDigit()) {
-            errorList.add(ERROR)
+            addError(END_IS_NOT_DIGIT)
         }
     }
 
-    private fun isOperatorStart(expr: List<String>) {    // строка начинается с оператора
+    private fun isOperatorStart(expr: List<String>) {       // строка начинается с оператора
         if (!expr[0].toCharArray()[0].isDigit()) {
-            errorList.add(ERROR)
+            addError(START_IS_NOT_DIGIT)
         }
     }
 
-    private fun isDoubleOperator(expr: List<String>) {    // две операции подряд
+    private fun isDoubleOperator(expr: List<String>) {      // две операции подряд
         var operation = ONE
         expr.forEach {
             if (!it.toCharArray()[0].isDigit() && !operation.toCharArray()[0].isDigit()) {
-                errorList.add(ERROR)
+                addError(MISTAKE_OPERATION)
             }
             operation = it
         }
     }
 
-    fun isDivNull(expr: List<String>) {
+    private fun isDivNull(expr: List<String>) {             // деление на ноль
         var div = EMPTY_STRING
         expr.forEach {
             if (it == ZERO && div == DIV) {
-                errorList.add(ERROR)
+                addError(DIVISION_BY_ZERO)
             }
             div = it
         }
+    }
+
+    private fun addError(error: String) {
+        val messageProperty: MutableList<String> = ErrorMessage.messageProperty.toMutableList()
+        messageProperty.add(error)
+        ErrorMessage.messageList = messageProperty
     }
 }
