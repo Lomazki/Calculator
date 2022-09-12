@@ -1,28 +1,34 @@
 package by.lomazki.calculator
 
+import by.lomazki.calculator.Constants.DIV
+import by.lomazki.calculator.Constants.DIVISION_BY_ZERO
+import by.lomazki.calculator.Constants.EMPTY_STRING
+import by.lomazki.calculator.Constants.END_IS_NOT_DIGIT
+import by.lomazki.calculator.Constants.MISTAKE_OPERATION
+import by.lomazki.calculator.Constants.ONE
+import by.lomazki.calculator.Constants.START_IS_NOT_DIGIT
+import by.lomazki.calculator.Constants.ZERO
+
 class Validator {
 
     fun validate(exprList: List<String>) {
-        if (ErrorMessage.messageList.isNotEmpty()) {
-            ErrorMessage.messageList = listOf()
-        }
+        ErrorMessage.message = EMPTY_STRING
 
         isExprInvalid(exprList)
         isOperatorStart(exprList)
         isDoubleOperator(exprList)
         isDivNull(exprList)
-
     }
 
     private fun isExprInvalid(exprList: List<String>) {     // выражение не полное. нет слогаемого
         if (!exprList.last().toCharArray()[0].isDigit()) {
-            addError(END_IS_NOT_DIGIT)
+            ErrorMessage.message = END_IS_NOT_DIGIT
         }
     }
 
     private fun isOperatorStart(expr: List<String>) {       // строка начинается с оператора
         if (!expr[0].toCharArray()[0].isDigit()) {
-            addError(START_IS_NOT_DIGIT)
+            ErrorMessage.message = START_IS_NOT_DIGIT
         }
     }
 
@@ -30,7 +36,7 @@ class Validator {
         var operation = ONE
         expr.forEach {
             if (!it.toCharArray()[0].isDigit() && !operation.toCharArray()[0].isDigit()) {
-                addError(MISTAKE_OPERATION)
+                ErrorMessage.message = MISTAKE_OPERATION
             }
             operation = it
         }
@@ -40,15 +46,9 @@ class Validator {
         var div = EMPTY_STRING
         expr.forEach {
             if (it == ZERO && div == DIV) {
-                addError(DIVISION_BY_ZERO)
+                ErrorMessage.message = DIVISION_BY_ZERO
             }
             div = it
         }
-    }
-
-    private fun addError(error: String) {
-        val messageProperty: MutableList<String> = ErrorMessage.messageProperty.toMutableList()
-        messageProperty.add(error)
-        ErrorMessage.messageList = messageProperty
     }
 }

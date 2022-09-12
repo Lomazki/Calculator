@@ -1,5 +1,12 @@
 package by.lomazki.calculator
 
+import by.lomazki.calculator.Constants.DIV
+import by.lomazki.calculator.Constants.EMPTY_STRING
+import by.lomazki.calculator.Constants.MINUS
+import by.lomazki.calculator.Constants.MULTIPLY
+import by.lomazki.calculator.Constants.NUMBER_FORMAT
+import by.lomazki.calculator.Constants.PLUS
+import by.lomazki.calculator.Constants.regex
 import java.text.DecimalFormat
 
 class Calc {
@@ -8,17 +15,17 @@ class Calc {
     private val validator = Validator()
     private val numberFormat = DecimalFormat(NUMBER_FORMAT)
 
-    fun calculate(input: String): String {
+    fun calculate(input: String): SuccessOrError {
         if (input == EMPTY_STRING) {
-            return EMPTY_STRING
+            return SuccessOrError.Error(EMPTY_STRING)
         }
         val inputList = inputToList(input)
         validator.validate(inputList)
-        if (ErrorMessage.messageList.isNotEmpty()) {
-            return ErrorMessage.messageList[0]
+        if (ErrorMessage.message != EMPTY_STRING) {
+            return SuccessOrError.Error(ErrorMessage.message)
         }
         filterInput(inputList)
-        return numberFormat.format(calculateExpression()).toString()
+        return SuccessOrError.Success(numberFormat.format(calculateExpression()).toString())
     }
 
     private fun filterInput(inputList: List<String>) {

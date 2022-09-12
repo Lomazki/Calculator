@@ -5,9 +5,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import by.lomazki.calculator.Constants.DIV
+import by.lomazki.calculator.Constants.DOT
+import by.lomazki.calculator.Constants.EIGHT
+import by.lomazki.calculator.Constants.EMPTY_STRING
+import by.lomazki.calculator.Constants.FIVE
+import by.lomazki.calculator.Constants.FOUR
+import by.lomazki.calculator.Constants.MINUS
+import by.lomazki.calculator.Constants.MULTIPLY
+import by.lomazki.calculator.Constants.NINE
+import by.lomazki.calculator.Constants.ONE
+import by.lomazki.calculator.Constants.PLUS
+import by.lomazki.calculator.Constants.SEVEN
+import by.lomazki.calculator.Constants.SIX
+import by.lomazki.calculator.Constants.TREE
+import by.lomazki.calculator.Constants.TWO
+import by.lomazki.calculator.Constants.ZERO
 import by.lomazki.calculator.databinding.FragmentCalculatorBinding
 import com.google.android.material.snackbar.Snackbar
-
 
 class CalculatorFragment : Fragment() {
 
@@ -92,15 +107,18 @@ class CalculatorFragment : Fragment() {
                 resultTextView.text = expression.toString()
             }
             equally.setOnClickListener {
-                val result = calc.calculate(expression.toString())
-                if (result.toDoubleOrNull() == null) {
-                    resultTextView.text = expression
-                    Snackbar.make(view, result, Snackbar.LENGTH_INDEFINITE)
-                        .setAction("ok") {
-                        }.show()
-                } else {
-                    resultTextView.text = result
-                    expression.clear()
+                val resultOrError = calc.calculate(expression.toString())
+
+                when (resultOrError) {
+                    is SuccessOrError.Error -> {
+                        Snackbar.make(view, resultOrError.error, Snackbar.LENGTH_INDEFINITE)
+                            .setAction("ok") {
+                            }.show()
+                    }
+                    is SuccessOrError.Success -> {
+                        resultTextView.text = resultOrError.result
+                        expression.clear()
+                    }
                 }
             }
             backspace.setOnClickListener {

@@ -1,13 +1,11 @@
 package by.lomazki.calculator
 
-object ErrorMessage {
-    var messageList: List<String> = listOf()
+import by.lomazki.calculator.Constants.EMPTY_STRING
 
-    var messageProperty: List<String>
-        get() = this.messageList
-        set(value) {
-            this.messageList = value
-        }
+object ErrorMessage {
+
+    var message: String = EMPTY_STRING
+
 }
 
 
